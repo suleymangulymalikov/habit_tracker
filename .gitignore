@@ -1,0 +1,10 @@
+# Virtual Environments
+.venv/
+venv/
+
+# Cached files
+__pycache__
+*.pyc 
+
+# Credential Files
+.env
