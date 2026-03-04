@@ -23,7 +23,7 @@ class HabitCompletion(Base):
     completed_date: Mapped[date] = mapped_column(Date, default=date.today, nullable=False)
 
     __table_args__ = (
-        UniqueConstraint("habit_id", "completed_date", name="uq_habit_completion_per_day")
+        UniqueConstraint("habit_id", "completed_date", name="uq_habit_completion_per_day"),
     )
 
     habit: Mapped["Habit"] = relationship("Habit", back_populates="completions")
