@@ -188,4 +188,11 @@ Apply migrations:
 alembic upgrade head
 ```
 
----
+graph TD
+Client --> FastAPI
+FastAPI --> HabitRouter
+FastAPI --> CompletionRouter
+HabitRouter --> HabitService
+CompletionRouter --> CompletionService
+HabitService --> PostgreSQL
+CompletionService --> PostgreSQL
