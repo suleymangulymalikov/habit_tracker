@@ -5,7 +5,27 @@ A backend REST API for tracking daily habits and calculating completion streaks.
 This project was built to practice backend engineering concepts such as relational database modeling, service-layer architecture, and database migrations.
 
 ---
+## Architecture
+The backend follows a layered architecture where HTTP requests pass through routers,
+business logic is handled by service classes, and data is persisted in PostgreSQL.
+```mermaid
+graph TD
 
+Client[Client / Frontend] --> API[FastAPI Application]
+
+API --> HabitRouter[Habit Router]
+API --> CompletionRouter[Completion Router]
+
+HabitRouter --> HabitService[Habit Service]
+CompletionRouter --> CompletionService[Completion Service]
+
+HabitService --> DB[(PostgreSQL Database)]
+CompletionService --> DB
+
+DB --> HabitTable[habits table]
+DB --> CompletionTable[habit_completions table]
+```
+---
 ## Tech Stack
 
 - **Python 3.12**
@@ -188,4 +208,4 @@ Apply migrations:
 alembic upgrade head
 ```
 
----
+
