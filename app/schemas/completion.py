@@ -12,4 +12,3 @@ class HabitCompletionStatsRead(BaseModel):
     total_completions: int 
     current_streak: int 
     longest_streak: int 
-    

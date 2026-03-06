@@ -13,13 +13,17 @@ class Habit(Base):
     description: Mapped[str] = mapped_column(String, nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now(timezone.utc), nullable=False)
 
-    completions: Mapped[List["HabitCompletion"]] = relationship("HabitCompletion", back_populates="habit")
+    completions: Mapped[List["HabitCompletion"]] = relationship(
+        "HabitCompletion",
+        back_populates="habit",
+        cascade="all, delete-orphan"
+    )
 
 class HabitCompletion(Base):
     __tablename__ = "habit_completions"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    habit_id: Mapped[int] = mapped_column(Integer, ForeignKey("habits.id"), nullable=False)
+    habit_id: Mapped[int] = mapped_column(Integer, ForeignKey("habits.id", ondelete="CASCADE"), nullable=False)
     completed_date: Mapped[date] = mapped_column(Date, default=date.today, nullable=False)
 
     __table_args__ = (

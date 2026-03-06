@@ -1,10 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from typing import List
 
-from app.database.session import get_db 
 from app.database.models import Habit 
-from app.schemas.habit import HabitCreate, HabitRead, HabitUpdate
 
 def get_habits(db: Session):
     return db.query(Habit).order_by(Habit.created_at, Habit.id).all()

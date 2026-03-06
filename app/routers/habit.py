@@ -1,9 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from typing import List, Annotated
 
 from app.database.session import get_db 
-from app.database.models import Habit
 from app.schemas.habit import HabitCreate, HabitRead, HabitUpdate
 from app.services import habit_service
 
